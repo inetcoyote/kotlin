@@ -1,8 +1,8 @@
 import kotlin.math.round
 fun main() {
     //queueworking()
-    //oop()
-    math()
+    oop()
+    //math()
 }
 
 fun queueworking() {
@@ -31,9 +31,29 @@ fun queueworking() {
 
 fun oop(){
     val hp = PC ("HP", "HP Pro")
-    hp.installDocker()
+    val mac = Notebook ("Apple", "MacBook")
+    val phone = Phone ("HONOR", "HONOR 100")
 
+    val portables = listOf(phone, mac)
+    portables.forEach { it.work() }
 
+    val allDevice = listOf(hp, mac, phone)
+    allDevice.forEach { it.deviceInfo() }
+
+/*
+    //скойп функция для проверки работы ноутбука - не нужно в каждой строчке писать mac ни this
+    with (phone) {
+        batteryInfo()
+        work()
+        work()
+        batteryInfo()
+        charge()
+        batteryInfo()
+    }
+    */
+
+    //val computers = listOf(hp, mac)
+    //computers.forEach { it.installDocker() }
 
 }
 

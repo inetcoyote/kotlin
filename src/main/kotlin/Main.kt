@@ -1,8 +1,33 @@
 import kotlin.math.round
 fun main() {
     //queueworking()
-    oop()
+    stackworking()
+    //oop()
     //math()
+}
+
+fun stackworking() {
+    val stack = MyStack<Int>()
+    stack.to_stack(1)
+    stack.to_stack(2)
+    stack.to_stack(3)
+    println("Стек из чисел")
+    println("Перечень значений в стека: $stack")
+    stack.from_stack()
+    println("Исключили из стека: $stack")
+    stack.to_stack(4)
+    println("Добавили новое значение в стек: $stack")
+    println("========================")
+    println("Стек из строк")
+    val stackstr = MyStack<String>()
+    stackstr.to_stack("Петя")
+    stackstr.to_stack("Вася")
+    stackstr.to_stack("Федя")
+    println("Перечень значений в стеке: $stackstr")
+    stackstr.from_stack()
+    println("Исключили из стека: $stackstr")
+    stackstr.to_stack("Евгений Павлович")
+    println("Добавили новое значение в стек: $stackstr")
 }
 
 fun queueworking() {

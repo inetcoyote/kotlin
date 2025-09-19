@@ -1,4 +1,5 @@
 class MyQueue<T> {
+    //реализация очереди с принципом FIFO (первый пришел - первый вышел)
     private val list = mutableListOf<T>()
 
     fun enqueue(item: T) {

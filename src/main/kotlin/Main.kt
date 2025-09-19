@@ -1,7 +1,8 @@
+import kotlin.math.round
 fun main() {
-    queueworking()
+    //queueworking()
     //oop()
-
+    math()
 }
 
 fun queueworking() {
@@ -38,22 +39,21 @@ fun oop(){
 
 fun math(){
 
-    val res = MyFunctions().Add(21, 2)
-    println(res)
+    val res = MyFunctions().plus(21, 2)
+    println("Сумма чисел 21 и 2 равна $res")
 
     val res2 = MyFunctions().minus(2, 22)
-    println(res2)
+    println("Разность чисел 2 и 22 равна $res2")
 
-    println("Введите число 1")
-    var myin1 = readLine()
-    val intNumber1 = myin1!!.toInt()
-    println("Введите число 2")
-    var myin2 = readLine()
-    val intNumber2 = myin2!!.toInt()
+    println("Введите число 1:")
+    var instr1 = readLine()
+    val num1 = instr1!!.toDouble()
+    println("Введите число 2:")
+    var instr2 = readLine()
+    val num2 = instr2!!.toDouble()
 
-    val res3 = MyFunctions().delete(intNumber1, intNumber2)
-    println("Результат от деления = ")
-    println(res3)
+    val res3 = MyFunctions().delete(num1, num2)
+    println("Результат от деления $num1 на $num2 равен $res3")
 }
 
 

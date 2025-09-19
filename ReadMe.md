@@ -8,6 +8,6 @@
 
 Класс Телефон реализует интерфейсы Device и Portable
 
-Класс MyQueue реализует принцип очереди FIFO (первый пришел - первый вышел)
+Класс [MyQueue](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyQueue.kt) реализует принцип очереди FIFO (первый пришел - первый вышел)
 
-Класс MyStack реализует принцип стека LIFO (последний пришел - первый вышел)
+Класс [MyStack](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyStack.kt) реализует принцип стека LIFO (последний пришел - первый вышел)

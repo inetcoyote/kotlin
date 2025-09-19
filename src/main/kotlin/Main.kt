@@ -1,6 +1,6 @@
 fun main() {
     queueworking()
-
+    //oop()
 
 }
 
@@ -28,9 +28,15 @@ fun queueworking() {
     println("Добавили новое значение в очередь: $queuestr")
 }
 
-fun math(){
+fun oop(){
     val hp = PC ("HP", "HP Pro")
     hp.installDocker()
+
+
+
+}
+
+fun math(){
 
     val res = MyFunctions().Add(21, 2)
     println(res)

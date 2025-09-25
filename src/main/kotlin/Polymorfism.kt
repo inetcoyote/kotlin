@@ -50,11 +50,11 @@ class MathOperations {
 
 
 fun main() {
-    //val math = MathUtils()
-    //println(math.add(1, 2))     // Выводит 3
-    //println(math.add(1.5, 2.5)) // Выводит 4.0
+    val math = MathUtils()
+    println(math.add(1, 2))     // Выводит 3
+    println(math.add(1.5, 2.5)) // Выводит 4.0
     //callpolymorfism()
-    callpolymorfism2()
+    //callpolymorfism2()
 
 
 }

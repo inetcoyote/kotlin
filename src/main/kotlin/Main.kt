@@ -1,9 +1,233 @@
 import kotlin.math.round
 fun main() {
     //queueworking()
-    stackworking()
+    //stackworking()
     //oop()
     //math()
+    //val in2 = readLine()!!.toInt()
+    //callStudents()
+    //callCircle()
+    //callLogger()
+    //callTriangle()
+    //callcarinfo()
+    //callNasledovanie
+    //callNasledovanie2()
+    //callNasledovanie3()
+    //callNasledovanie4()
+    //callAccessLevel()
+    //callAccessLevel2()
+    callAccessLevel3()
+
+//test()
+
+    }
+object Logger {
+    fun log(message: String) {
+        println("Log: $message")
+    }
+}
+
+fun callAccessLevel3() {
+    val in1 = readLine()!!.toInt()
+    var lista = mutableListOf<String>()
+
+    for (i in 0..in1 - 1) {
+        val instr = readLine()
+        lista.add(instr!!.split(" ")[0])
+    }
+
+    for (i in 0..in1 - 1) {
+
+        val teacher = Teacher()
+        teacher.setSubject(lista[i].toString())
+        teacher.printSubject()
+    }
+}
+
+fun callAccessLevel2() {
+    val in1 = readLine()!!.toInt()
+    var lista = mutableListOf<String>()
+    var listb = mutableListOf<String>()
+    for (i in 0..in1 - 1) {
+        val instr = readLine()
+        lista.add(instr!!.split(" ")[0])
+        listb.add(instr!!.split(" ")[1])
+    }
+
+    for (i in 0..in1 - 1) {
+
+        val student = Student2()
+        student.setName(lista[i].toString())
+        student.setStudentId(listb[i].toInt())
+        student.printStudentDetails()
+    }
+}
+
+fun callAccessLevel() {
+    val incount = readLine()!!.toInt()
+    val list = mutableListOf<String>()
+    for (i in 0..incount - 1) {
+        list.add(readLine()!!.toString())
+    }
+
+    for (i in 0..incount - 1) {
+        val person = Person2()
+        person.setName(list[i])
+        person.printName()
+    }
+
+}
+
+
+fun callNasledovanie4() {
+    //val in1 = readLine()!!.toInt()
+    var listname = String()
+    var listrole = String()
+        val instr = readLine()
+    listname = instr!!.split(" ")[0]
+    listrole = instr!!.split(" ")[1]
+
+    val user: Person = when (listrole.toString()) {
+        "Moderator" -> Moderator(listname.toString())
+        "Admin" -> Admin(listname.toString())
+        else -> {
+            println("Неизвестная роль.")
+            return
+        }
+    }
+
+    user.showInfo()
+
+}
+
+fun callNasledovanie3(){
+    val in1 = readLine()!!.toString()
+    if (in1 == "Car") {
+        val car = Car2()
+        car.drive()
+    }
+    else if (in1 == "Bicycle") {
+        val bicycle = Bicycle()
+        bicycle.drive()
+    }
+    else if (in1 == "Boat") {
+        val boat = Boat()
+        boat.drive()
+    }
+    else {
+        println("Неверный ввод")
+    }
+}
+fun callNasledovanie2(){
+    val in1 = readLine()!!.toString()
+    if (in1 == "Circle") {
+        val cat = Circle2()
+        cat.draw()
+    }
+    else if (in1 == "Square") {
+        val square = Square()
+        square.draw()
+    }
+    else if (in1 == "Triangle") {
+        val triangle = Triangle2()
+        triangle.draw()
+    }
+    else {
+        println("Неверный ввод")
+    }
+}
+
+fun callNasledovanie() {
+    val in1 = readLine()!!.toString()
+    if (in1 == "Cat") {
+        val cat = Cat()
+        cat.sound()
+    }
+    else if (in1 == "Dog") {
+        val dog = Dog()
+        dog.sound()
+    }
+    else if (in1 == "Bird") {
+        val bird = Bird()
+        bird.sound()
+    }
+    else {
+        println("Неверный ввод")
+    }
+}
+fun callcarinfo() {
+    val in1 = readLine()!!.toInt()
+    var lista = mutableListOf<String>()
+    var listb = mutableListOf<String>()
+    for (i in 0..in1 - 1) {
+        val instr = readLine()
+        lista.add(instr!!.split(" ")[0])
+        listb.add(instr.split(" ")[1])
+    }
+
+    for (i in 0..in1 - 1) {
+        val carinfo = Car(lista[i].toString(), listb[i].toInt(),)
+        carinfo.printDetails()
+    }
+}
+fun callTriangle() {
+    val in1 = readLine()!!.toInt()
+    var lista = mutableListOf<String>()
+    var listb = mutableListOf<String>()
+    var listc = mutableListOf<String>()
+    for (i in 0..in1 - 1) {
+        val instr = readLine()
+        lista.add(instr!!.split(" ")[0])
+        listb.add(instr.split(" ")[1])
+        listc.add(instr.split(" ")[2])
+    }
+
+    for (i in 0..in1 - 1) {
+        val ugol = Triangle(lista[i].toDouble(), listb[i].toDouble(), listc[i].toDouble())
+        println(ugol.isEquilateral())
+    }
+
+}
+
+
+fun callLogger() {
+    val in1 = readln().toInt()
+    val list = mutableListOf<String>()
+    for (i in 0..in1 - 1) {
+        list.add(readln())
+    }
+    for (i in 0..in1 - 1)
+        Logger.log(list[i])
+
+}
+
+fun callStudents() {
+    val in1 = readln().toInt()
+    val listName = mutableListOf<String>()
+    val listAge = mutableListOf<String>()
+    for (i in 0..in1 - 1) {
+        val instr = readln()
+        listName.add(instr.split(" ")[0])
+        listAge.add(instr.split(" ")[1])
+    }
+
+    for (i in 0 .. in1 - 1) {
+        val student = Student(listName[i], listAge[i].toInt())
+        student.printInfo()
+    }
+    //val student = Student("John", 20)
+    //student.printInfo()
+
+}
+fun callCircle() {
+    val in1 = readln().toDouble()
+    var ar = Circle(in1, 0.0)
+    ar.calculateArea()
+    println("Radius: $in1")
+    println("Area: ${ar.area}")
+    //println("Area: ${round(ar.area)}")
+
+//окончание функции
 }
 
 fun stackworking() {

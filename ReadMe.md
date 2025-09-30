@@ -11,3 +11,5 @@
 Класс [MyQueue](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyQueue.kt) реализует принцип очереди FIFO (первый пришел - первый вышел)
 
 Класс [MyStack](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyStack.kt) реализует принцип стека LIFO (последний пришел - первый вышел)
+
+Файл [DataBase](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/DataBase.kt) реализует операции создания, добавления, изменения, обновления и удаления в БД SQLite

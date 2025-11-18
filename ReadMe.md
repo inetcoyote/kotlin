@@ -13,3 +13,9 @@
 Класс [MyStack](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyStack.kt) реализует принцип стека LIFO (последний пришел - первый вышел)
 
 Файл [DataBase](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/DataBase.kt) реализует операции создания, добавления, изменения, обновления и удаления в БД SQLite
+
+Примеры работы с потоками:
+
+Файл [MyThreads](https://github.com/inetcoyote/kotlin/blob/master/src/main/kotlin/MyThreads.kt) реализует пример использования синхронизации потоков
+
+Задача: Создать 1 поток, который пишет в переменную, а три других потока читают из неё.

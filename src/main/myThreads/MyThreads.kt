@@ -29,7 +29,7 @@ class SharedData {
 
 fun main() {
     val sharedData = SharedData()
-
+    println("Старт программы.")
     // Поток, который пишет в переменную
     thread(name = "Writer") {
         for (i in 1..5) {

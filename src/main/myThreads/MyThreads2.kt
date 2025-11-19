@@ -1,74 +1,64 @@
-import java.util.concurrent.*
-import java.util.concurrent.atomic.AtomicInteger
-import kotlin.system.measureTimeMillis
+import kotlin.concurrent.thread
+
+class SharedData {
+    private var value: Int? = null
+    private var isUpdated = false
+    private val lock = Any() // Любой объект — будет использоваться как монитор
+
+    // Поток-производитель вызывает этот метод
+    fun setValue(newValue: Int) {
+        synchronized(lock) {
+            value = newValue
+            isUpdated = true
+            (lock as java.lang.Object).notifyAll() // Явный вызов notifyAll
+            println("Записано значение: $newValue")
+        }
+    }
+
+    // Потоки-наблюдатели вызывают этот метод
+    fun getValue(): Int? {
+        synchronized(lock) {
+            while (!isUpdated) {
+                (lock as java.lang.Object).wait() // Явный вызов wait
+            }
+            isUpdated = false
+            return value
+        }
+    }
+}
 
 fun main() {
-    val target = 1_000_000
-    val iterations = 1_000_000
-
-    println("Запуск сравнения пулов потоков: увеличение счётчика до $target\n")
-
-    val results = mutableListOf<Pair<String, Long>>()
-
-    // Пул 1: 10 потоков
-    val time10 = measureTimeMillis {
-        val executor = Executors.newFixedThreadPool(10)
-        val counter = AtomicInteger(0)
-        val tasks = mutableListOf<Future<*>>()
-
-        repeat(iterations) {
-            tasks.add(executor.submit {
-                counter.incrementAndGet()
-            })
+    val sharedData = SharedData()
+    println("Старт программы.")
+    // Поток, который пишет в переменную
+    thread(name = "Writer") {
+        for (i in 1..5) {
+            sharedData.setValue(i)
+            Thread.sleep(2000)
         }
-
-        // Ждём завершения всех задач
-        tasks.forEach { it.get() }
-        executor.shutdown()
-        executor.awaitTermination(1, TimeUnit.MINUTES)
+        println("Поток-писатель завершил работу.")
     }
-    results.add("10 потоков" to time10)
-    println("10 потоков завершили за: $time10 мс")
 
-    // Пул 2: 20 потоков
-    val time20 = measureTimeMillis {
-        val executor = Executors.newFixedThreadPool(20)
-        val counter = AtomicInteger(0)
-        val tasks = mutableListOf<Future<*>>()
-
-        repeat(iterations) {
-            tasks.add(executor.submit {
-                counter.incrementAndGet()
-            })
+    // Три потока, которые следят за переменной
+    repeat(3) { observerId ->
+        thread(name = "Observer-$observerId") {
+            while (true) {
+                try {
+                    val value = sharedData.getValue()
+                    println("Наблюдатель $observerId увидел значение: $value")
+                    Thread.sleep(300) // Имитация обработки
+                } catch (e: InterruptedException) {
+                    println("Наблюдатель $observerId прерван.")
+                    return@thread
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    return@thread
+                }
+            }
         }
-
-        tasks.forEach { it.get() }
-        executor.shutdown()
-        executor.awaitTermination(1, TimeUnit.MINUTES)
     }
-    results.add("20 потоков" to time20)
-    println("20 потоков завершили за: $time20 мс")
 
-    // Пул 3: 30 потоков
-    val time30 = measureTimeMillis {
-        val executor = Executors.newFixedThreadPool(30)
-        val counter = AtomicInteger(0)
-        val tasks = mutableListOf<Future<*>>()
-
-        repeat(iterations) {
-            tasks.add(executor.submit {
-                counter.incrementAndGet()
-            })
-        }
-
-        tasks.forEach { it.get() }
-        executor.shutdown()
-        executor.awaitTermination(1, TimeUnit.MINUTES)
-    }
-    results.add("30 потоков" to time30)
-    println("30 потоков завершили за: $time30 мс")
-
-    // Определяем победителя
-    val winner = results.minByOrNull { it.second }!!
-    println("\n🏆 Победил пул: ${winner.first} с результатом ${winner.second} мс")
+    // Даем программе время на выполнение
+    Thread.sleep(12000)
+    println("Программа завершена.")
 }
